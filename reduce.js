@@ -15,6 +15,8 @@ const produtos = [
     {produto: "Jaqueta de couro" , preco: 700.01}
 ];
 
+const bonus = 100;
+
 let totProduto = produtos.reduce((vlInicial, op) =>{
     return vlInicial + (op.preco);
 }, 0);
@@ -23,6 +25,14 @@ let totProduto = produtos.reduce((vlInicial, op) =>{
 
 let comissao = produtos.reduce((vlInicial, op) =>{
     return vlInicial + (op.preco * 0.05);
-}, 0);
+}, bonus);
 
 console.log(`A comissao de vendas do ${vendedor }foi de : R$${comissao.toFixed(2)}`);
+
+const objVendedor = {
+    nome : vendedor,
+    comissao,
+    idade: 41
+}
+
+console.log(objVendedor);

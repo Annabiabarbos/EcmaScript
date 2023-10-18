@@ -11,6 +11,3 @@ const nomesCompletos = nome.map((nome, indice) => {
 nomesCompletos.forEach((nc) => {
     console.log(nc);
 });
-
-
-
