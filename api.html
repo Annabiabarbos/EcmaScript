@@ -2,44 +2,47 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
 
 <body>
     <script>
+        const url = "https://viacep.com.br/ws/09930290/jsonr";
+
         //get
-
-        const url = "https://viacep.com.br/ws/09361300/json"
-
         fetch(url)
-        .then((resposta) => {
-            //obj promise resolvido (headers, body, wherever, others)
-            return resposta.json();
-        })
-        .then((dados)=> {
-            console.log(`
-            Endereço : ${dados.logradouro}
-            Cidade: ${dados.localidade}
-            Estado : ${dados.uf}
-        `)
-        })
+            .then((resposta) => {
+                //objeto promise resolvido (headers, body, others)
+                return resposta.json();
+            })
+            .then((dados) => {
+                console.log(dados);
+                console.log();
 
+                console.log(`
+                Endreço:  ${dados.logradouro}
+                Cidade: ${dados.localidade}
+                Estado: ${dados.uf}
+            `);
+            })
+            .catch((e) => {
+                console.log(`Deu ruim: ${e.TypeError}`);
+                console.log(e);
+            });
 
+        async function chamarApi(endreço) {
+            try {
+                const promise = await fetch(endreço);
+                const dados = await promise.json();
+            } catch (e) {
+                console.log("Deu ruim na API");
+            }
+        }
 
-        /*const retorno = fetch("https://viacep.com.br/ws/09361300/json")
-        .then((resp) => {//promisse resolvida
-            console.log(resp);//objeto cheio de coisas
-            return resp.json;//retorna os dados
-        }) 
-        .then ((dados)=>{ //os dados do corpo da promisse the object!
-            console.log(dados);
-        })
-        .catch((e)=>{
-            console.log("Deu ruim!");
-        })*/
+        chamarApi(url); //chamada para uma api
+
     </script>
 </body>
 
